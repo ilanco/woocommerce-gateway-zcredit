@@ -1,0 +1,14 @@
+{
+    "name": "ilanco/woocommerce-gateway-zcredit",
+    "description": "WooCommerce Payment Gateway for ZCredit",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Ilan Cohen",
+            "email": "ilanco@gmail.com"
+        }
+    ],
+    "require": {
+        "ilanco/zcredit-client-php": "^1.9"
+    }
+}
