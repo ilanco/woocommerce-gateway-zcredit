@@ -29,8 +29,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-require_once 'vendor/autoload.php';
-
 define('WC_ZCREDIT_VERSION', '1.0.0');
 define('WC_ZCREDIT_MIN_PHP_VER', '5.3.0');
 define('WC_ZCREDIT_MIN_WC_VER', '2.5.0');
