@@ -5,7 +5,7 @@
  * Description: Take credit card payments on your store using ZCredit.
  * Author: Ilan Cohen
  * Author URI: https://github.com/ilanco
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text Domain: woocommerce-gateway-zcredit
  * Domain Path: /languages
  *
