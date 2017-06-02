@@ -123,13 +123,28 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
 
         $lineItems = $this->get_line_items($order);
 
+        switch ($order->get_order_currency()) {
+            case 'USD':
+                $currency = ZCredit\CurrencyType::USD;
+                $language = ZCredit\Languages::English;
+                break;
+
+            case 'ILS':
+                $currency = ZCredit\CurrencyType::NIS;
+                $language = ZCredit\Languages::Hebrew;
+                break;
+
+            default:
+                throw new Exception('Currency ' . $order->get_order_currency() . ' not supported.');
+        }
+
         $url = ZCredit\ZCreditHelper::PayWithInvoice(
             $this->terminal_id,
             $this->username,
             $order->get_total(),
             1,
-            ZCredit\Languages::Hebrew,
-            ZCredit\CurrencyType::NIS,
+            $language,
+            $currency,
             $order->get_order_number(),
             "Zushik",
             1,
