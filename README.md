@@ -3,7 +3,7 @@ Contributors: ilanco@gmail.com
 Tags: credit card, zcredit, woocommerce
 Requires at least: 4.4
 Tested up to: 4.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,6 +62,9 @@ Yes it does - production and sandbox mode is driven by the API keys you use.
 If you get stuck, you can ask for help in the Plugin Forum.
 
 == Changelog ==
+
+= 1.0.2 =
+* add: variable language and currency for checkout page
 
 = 1.0.1 =
 * fix: update version
