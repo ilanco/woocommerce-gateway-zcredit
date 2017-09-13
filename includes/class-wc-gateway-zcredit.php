@@ -123,7 +123,7 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
 
         $lineItems = $this->get_line_items($order);
 
-        switch ($order->get_order_currency()) {
+        switch ($order->get_currency()) {
             case 'USD':
                 $currency = ZCredit\CurrencyType::USD;
                 $language = ZCredit\Languages::English;
@@ -135,7 +135,7 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
                 break;
 
             default:
-                throw new Exception('Currency ' . $order->get_order_currency() . ' not supported.');
+                throw new Exception('Currency ' . $order->get_currency() . ' not supported.');
         }
 
         $url = ZCredit\ZCreditHelper::PayWithInvoice(
