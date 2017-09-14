@@ -183,7 +183,17 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
             $product = $order->get_product_from_item($item);
             $sku = $product ? $product->get_sku() : '';
             $item_line_total = $order->get_item_subtotal($item, false);
-            $lineItems[] = $this->add_line_item($item['name'], $item['qty'], $item_line_total, $sku);
+            
+           // get image of products 
+           if ( has_post_thumbnail( $product->id ) ) {
+                        $attachment_ids[0] = get_post_thumbnail_id( $product->id );
+                         $attachment = wp_get_attachment_image_src($attachment_ids[0], 'full' ); 
+                         $pic_url = $attachment[0];
+            } else {
+                
+                $pic_url = '';
+            }
+            $lineItems[] = $this->add_line_item($item['name'], $item['qty'], $item_line_total, $sku , $pic_url);
         }
 
         return $lineItems;
@@ -196,20 +206,22 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
      * @param  int     $quantity
      * @param  int     $amount
      * @param  string  $item_number
-     *
+     * @param  string  $picture_url
+     * 
      * @return bool successfully added or not
      */
-    protected function add_line_item($item_name, $quantity = 1, $amount = 0, $item_number = '')
+    protected function add_line_item($item_name, $quantity = 1, $amount = 0, $item_number = '',$picture_url)
     {
         $lineItem = new ZCredit\CartItem();
         $lineItem->Name = html_entity_decode(wc_trim_string($item_name ? $item_name : 'Item', 127), ENT_NOQUOTES, 'UTF-8');
-        $lineItem->PictureURL = '';
+        $lineItem->PictureURL = $picture_url;
         $lineItem->SN = $item_number;
         $lineItem->Amount = $quantity;
         $lineItem->ItemPrice = $amount;
 
         return $lineItem;
     }
+
 
     public function handle_wc_api()
     {
