@@ -191,7 +191,7 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
                          $pic_url = $attachment[0];
             } else {
                 
-                $pic_url = '';
+                $pic_url = wc_placeholder_img_src();
             }
             $lineItems[] = $this->add_line_item($item['name'], $item['qty'], $item_line_total, $sku , $pic_url);
         }
@@ -206,8 +206,7 @@ class WC_Gateway_ZCredit extends WC_Payment_Gateway
      * @param  int     $quantity
      * @param  int     $amount
      * @param  string  $item_number
-     * @param  string  $picture_url
-     * 
+     *
      * @return bool successfully added or not
      */
     protected function add_line_item($item_name, $quantity = 1, $amount = 0, $item_number = '',$picture_url)
